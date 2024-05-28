@@ -1,0 +1,82 @@
+/* Style des boîtes de match */
+.match-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.match-box h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.match-box p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.match-box span {
+    font-weight: bold;
+}
+
+/* Style spécifique pour le contenu de chaque match */
+.match-details {
+    margin-top: 10px;
+}
+
+.match-details p {
+    margin-bottom: 5px;
+}
+
+.match-details span {
+    font-weight: bold;
+}
+
+/* Style pour la date */
+.match-date {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* Style pour les équipes */
+.match-teams {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.match-teams img {
+    width: 40px; /* Ajustez la taille des logos selon vos besoins */
+    height: 40px;
+    margin-right: 10px;
+}
+
+.match-teams h3 {
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour les liens */
+.match-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.match-link:hover {
+    text-decoration: underline;
+}
+
+img.team-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+

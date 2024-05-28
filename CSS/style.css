@@ -1,0 +1,49 @@
+/* Reset des marges et des paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+header {
+
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.banner {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #440000;
+}
+
+.banner h1 {
+  color: #fff;
+  font-size: 2em;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+article {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  margin-top: 0;
+}
