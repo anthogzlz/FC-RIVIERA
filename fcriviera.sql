@@ -14,76 +14,46 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Listage de la structure de la base pour fcriviera
-CREATE DATABASE IF NOT EXISTS `fcriviera` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `fcriviera`;
-
--- Listage de la structure de table fcriviera. calendrier
-CREATE TABLE IF NOT EXISTS `calendrier` (
-  `id_match` int NOT NULL AUTO_INCREMENT,
-  `home_team` int DEFAULT NULL,
-  `away_team` int DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `home_team_goal` int DEFAULT NULL,
-  `away_team_goal` int DEFAULT NULL,
-  `match_name` varchar(50) DEFAULT NULL,
-  `places_dispo` int DEFAULT NULL,
-  PRIMARY KEY (`id_match`),
-  KEY `FK_calendrier_equipe` (`home_team`),
-  KEY `FK_calendrier_equipe_2` (`away_team`)
-) ENGINE=InnoDB AUTO_INCREMENT=2324 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Listage des données de la table fcriviera.calendrier : ~34 rows (environ)
 DELETE FROM `calendrier`;
-INSERT INTO `calendrier` (`id_match`, `home_team`, `away_team`, `date`, `home_team_goal`, `away_team_goal`, `match_name`, `places_dispo`) VALUES
-	(1, 3, 12, '2024-05-22', NULL, NULL, NULL, 996),
-	(2, 11, 3, '2024-05-27', NULL, NULL, NULL, NULL),
-	(3, 3, 2, '2024-06-05', NULL, NULL, NULL, 1000),
-	(4, 10, 3, '2024-06-12', NULL, NULL, NULL, NULL),
-	(5, 3, 1, '2024-06-19', NULL, NULL, NULL, 1000),
-	(6, 17, 3, '2024-06-26', NULL, NULL, NULL, NULL),
-	(7, 3, 16, '2024-07-03', NULL, NULL, NULL, 1000),
-	(8, 15, 3, '2024-07-10', NULL, NULL, NULL, NULL),
-	(9, 3, 7, '2024-07-17', NULL, NULL, NULL, 1000),
-	(10, 10, 3, '2024-07-24', NULL, NULL, NULL, NULL),
-	(11, 3, 8, '2024-07-31', NULL, NULL, NULL, 1000),
-	(12, 9, 3, '2024-08-07', NULL, NULL, NULL, NULL),
-	(13, 3, 4, '2024-08-14', NULL, NULL, NULL, 1000),
-	(14, 6, 3, '2024-08-21', NULL, NULL, NULL, NULL),
-	(15, 3, 13, '2024-08-28', NULL, NULL, NULL, 1000),
-	(16, 14, 3, '2024-09-04', NULL, NULL, NULL, NULL),
-	(17, 3, 5, '2024-09-11', NULL, NULL, NULL, 1000),
-	(18, 12, 3, '2024-09-18', NULL, NULL, NULL, NULL),
-	(19, 3, 11, '2024-09-25', NULL, NULL, NULL, 1000),
-	(20, 2, 3, '2024-10-02', NULL, NULL, NULL, NULL),
-	(21, 3, 10, '2024-10-09', NULL, NULL, NULL, 1000),
-	(22, 1, 3, '2024-10-16', NULL, NULL, NULL, NULL),
-	(23, 3, 17, '2024-10-23', NULL, NULL, NULL, 1000),
-	(24, 16, 3, '2024-10-30', NULL, NULL, NULL, NULL),
-	(25, 3, 15, '2024-11-06', NULL, NULL, NULL, 1000),
-	(26, 7, 3, '2024-11-13', NULL, NULL, NULL, NULL),
-	(27, 3, 10, '2024-11-20', NULL, NULL, NULL, 1000),
-	(28, 8, 3, '2024-11-27', NULL, NULL, NULL, NULL),
-	(29, 3, 9, '2024-12-04', NULL, NULL, NULL, 1000),
-	(30, 4, 3, '2024-12-11', NULL, NULL, NULL, NULL),
-	(31, 3, 6, '2024-12-18', NULL, NULL, NULL, 1000),
-	(32, 13, 3, '2024-12-25', NULL, NULL, NULL, NULL),
-	(33, 3, 14, '2025-01-08', NULL, NULL, NULL, 1000),
-	(34, 5, 3, '2025-01-15', NULL, NULL, NULL, NULL);
+INSERT INTO `calendrier` (`id_match`, `home_team`, `away_team`, `date`, `home_team_goal`, `away_team_goal`, `manofthematch`, `match_name`, `places_dispo`) VALUES
+	(1, 3, 12, '2024-05-22', 2, 1, 10, NULL, 1000),
+	(2, 11, 3, '2024-05-27', NULL, NULL, NULL, NULL, NULL),
+	(3, 3, 2, '2024-06-05', NULL, NULL, NULL, NULL, 1000),
+	(4, 10, 3, '2024-06-12', NULL, NULL, NULL, NULL, NULL),
+	(5, 3, 1, '2024-06-19', NULL, NULL, NULL, NULL, 1000),
+	(6, 17, 3, '2024-06-26', NULL, NULL, NULL, NULL, NULL),
+	(7, 3, 16, '2024-07-03', NULL, NULL, NULL, NULL, 1000),
+	(8, 15, 3, '2024-07-10', NULL, NULL, NULL, NULL, NULL),
+	(9, 3, 7, '2024-07-17', NULL, NULL, NULL, NULL, 1000),
+	(10, 10, 3, '2024-07-24', NULL, NULL, NULL, NULL, NULL),
+	(11, 3, 8, '2024-07-31', NULL, NULL, NULL, NULL, 1000),
+	(12, 9, 3, '2024-08-07', NULL, NULL, NULL, NULL, NULL),
+	(13, 3, 4, '2024-08-14', NULL, NULL, NULL, NULL, 1000),
+	(14, 6, 3, '2024-08-21', NULL, NULL, NULL, NULL, NULL),
+	(15, 3, 13, '2024-08-28', NULL, NULL, NULL, NULL, 1000),
+	(16, 14, 3, '2024-09-04', NULL, NULL, NULL, NULL, NULL),
+	(17, 3, 5, '2024-09-11', NULL, NULL, NULL, NULL, 1000),
+	(18, 12, 3, '2024-09-18', NULL, NULL, NULL, NULL, NULL),
+	(19, 3, 11, '2024-09-25', NULL, NULL, NULL, NULL, 1000),
+	(20, 2, 3, '2024-10-02', NULL, NULL, NULL, NULL, NULL),
+	(21, 3, 10, '2024-10-09', NULL, NULL, NULL, NULL, 1000),
+	(22, 1, 3, '2024-10-16', NULL, NULL, NULL, NULL, NULL),
+	(23, 3, 17, '2024-10-23', NULL, NULL, NULL, NULL, 1000),
+	(24, 16, 3, '2024-10-30', NULL, NULL, NULL, NULL, NULL),
+	(25, 3, 15, '2024-11-06', NULL, NULL, NULL, NULL, 1000),
+	(26, 7, 3, '2024-11-13', NULL, NULL, NULL, NULL, NULL),
+	(27, 3, 10, '2024-11-20', NULL, NULL, NULL, NULL, 1000),
+	(28, 8, 3, '2024-11-27', NULL, NULL, NULL, NULL, NULL),
+	(29, 3, 9, '2024-12-04', NULL, NULL, NULL, NULL, 1000),
+	(30, 4, 3, '2024-12-11', NULL, NULL, NULL, NULL, NULL),
+	(31, 3, 6, '2024-12-18', NULL, NULL, NULL, NULL, 1000),
+	(32, 13, 3, '2024-12-25', NULL, NULL, NULL, NULL, NULL),
+	(33, 3, 14, '2025-01-08', NULL, NULL, NULL, NULL, 1000),
+	(34, 5, 3, '2025-01-15', NULL, NULL, NULL, NULL, NULL);
 
--- Listage de la structure de table fcriviera. effectif
-CREATE TABLE IF NOT EXISTS `effectif` (
-  `id_joueur` int NOT NULL AUTO_INCREMENT,
-  `nom_joueur` varchar(50) NOT NULL DEFAULT '',
-  `poste_joueur` varchar(50) NOT NULL DEFAULT '',
-  `numero_joueur` int NOT NULL DEFAULT '0',
-  `img_nationalite` longblob NOT NULL,
-  `id_equipe` int DEFAULT NULL,
-  PRIMARY KEY (`id_joueur`),
-  KEY `FK_effectif_equipe` (`id_equipe`),
-  CONSTRAINT `FK_effectif_equipe` FOREIGN KEY (`id_equipe`) REFERENCES `equipe` (`id_equipe`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Listage des données de la table fcriviera.comments : ~0 rows (environ)
+DELETE FROM `comments`;
 
 -- Listage des données de la table fcriviera.effectif : ~11 rows (environ)
 DELETE FROM `effectif`;
@@ -97,20 +67,8 @@ INSERT INTO `effectif` (`id_joueur`, `nom_joueur`, `poste_joueur`, `numero_joueu
 	(7, 'Ibrahim Sako', 'Milieu Défensif Central', 21, _binary 0x2e2e2f6173736574732f6d616c692e706e67, 3),
 	(8, 'Dylan Rolland', 'Milieu Offensif Central', 10, _binary 0x2e2e2f6173736574732f706f6c6f676e652e706e67, 3),
 	(9, 'Mario Moreaux', 'Ailier Gauche', 7, _binary 0x2e2e2f6173736574732f6672616e63652e706e67, 3),
-	(10, 'Antonhy Gonzalez', 'Buteur', 9, _binary 0x2e2e2f6173736574732f65737061676e652e706e67, 3),
+	(10, 'Anthony Gonzalez', 'Buteur', 9, _binary 0x2e2e2f6173736574732f65737061676e652e706e67, 3),
 	(11, 'Lorenzo Gotti', 'Ailier Droit', 11, _binary 0x2e2e2f6173736574732f6672616e63652e706e67, 3);
-
--- Listage de la structure de table fcriviera. equipe
-CREATE TABLE IF NOT EXISTS `equipe` (
-  `id_equipe` int NOT NULL AUTO_INCREMENT,
-  `nom_equipe` varchar(50) NOT NULL DEFAULT '',
-  `logo` longblob,
-  `points` int NOT NULL DEFAULT '0',
-  `butpour` int NOT NULL DEFAULT '0',
-  `butcontre` int NOT NULL DEFAULT '0',
-  `differencebut` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_equipe`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table fcriviera.equipe : ~18 rows (environ)
 DELETE FROM `equipe`;
@@ -134,70 +92,28 @@ INSERT INTO `equipe` (`id_equipe`, `nom_equipe`, `logo`, `points`, `butpour`, `b
 	(17, 'FC Lorient', _binary 0x2e2e2f6173736574732f66636c6c6f676f2e706e67, 0, 0, 0, 0),
 	(18, 'Racing Club de Lens', _binary 0x2e2e2f6173736574732f72636c6c6f676f2e706e67, 0, 0, 0, 0);
 
--- Listage de la structure de table fcriviera. messages
-CREATE TABLE IF NOT EXISTS `messages` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `date_sent` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Listage des données de la table fcriviera.messages : ~0 rows (environ)
 DELETE FROM `messages`;
 
--- Listage de la structure de table fcriviera. predictions
-CREATE TABLE IF NOT EXISTS `predictions` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
-  `match_number` int DEFAULT NULL,
-  `home_team` varchar(50) DEFAULT NULL,
-  `away_team` varchar(50) DEFAULT NULL,
-  `predicted_score` varchar(10) DEFAULT NULL,
-  `actual_score` varchar(10) DEFAULT NULL,
-  `points` int DEFAULT NULL,
-  `prediction_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Listage des données de la table fcriviera.predictions : ~0 rows (environ)
 DELETE FROM `predictions`;
+INSERT INTO `predictions` (`id`, `user_id`, `match_number`, `home_score`, `away_score`, `mom_prono`, `points`, `prediction_time`) VALUES
+	(15, 26, 1, '2', '1', 3, 100, '2024-05-29 19:45:29');
 
--- Listage de la structure de table fcriviera. reservations
-CREATE TABLE IF NOT EXISTS `reservations` (
-  `id_resa` int NOT NULL AUTO_INCREMENT,
-  `id_match` int NOT NULL,
-  `id_user` int NOT NULL,
-  `places_prises` int DEFAULT '0',
-  PRIMARY KEY (`id_resa`),
-  KEY `FK_reservations_calendrier` (`id_match`),
-  KEY `FK_reservations_users` (`id_user`),
-  CONSTRAINT `FK_reservations_calendrier` FOREIGN KEY (`id_match`) REFERENCES `calendrier` (`id_match`),
-  CONSTRAINT `FK_reservations_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Listage des données de la table fcriviera.reservations : ~0 rows (environ)
+-- Listage des données de la table fcriviera.reservations : ~3 rows (environ)
 DELETE FROM `reservations`;
 INSERT INTO `reservations` (`id_resa`, `id_match`, `id_user`, `places_prises`) VALUES
-	(2, 1, 20, 4);
+	(2, 1, 20, 4),
+	(3, 1, 25, 3),
+	(4, 3, 20, 1);
 
--- Listage de la structure de table fcriviera. users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
-  `prenom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `nom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `email` varchar(50) NOT NULL DEFAULT '',
-  `birthdate` date DEFAULT NULL,
-  `telephone` text NOT NULL,
-  `passwd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Listage des données de la table fcriviera.topics : ~0 rows (environ)
+DELETE FROM `topics`;
 
--- Listage des données de la table fcriviera.users : ~2 rows (environ)
+-- Listage des données de la table fcriviera.users : ~0 rows (environ)
 DELETE FROM `users`;
 INSERT INTO `users` (`id_user`, `prenom`, `nom`, `email`, `birthdate`, `telephone`, `passwd`) VALUES
-	(19, 'antho', 'gzlz', 'antho@gzlz', '2004-08-30', '0432051015', '$2y$10$.6x.DYK/.3abYF17O.D2G.QPo2L4.BSjTp3Er7K4DzDNm.lLVzmNG'),
-	(20, 'test', 'test', 'test@test', '2004-11-28', '0635545492', '$2y$10$rny7Oy66sBDYsNfW5cgcS.FV/a7FBKVdW0jWad1vCRMPzIjCxACW6');
+	(26, 'Anthony', 'Anthony Gonzalez', 'antho0630@gmail.com', '2024-05-01', '0761740276', '$2y$10$Gntlrma1fkdxLQYyWbgcdOQ97F7tne.g/FzfbBknk4wnr5klGpfjO');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
