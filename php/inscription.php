@@ -17,8 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             try {
                 // Connexion à la base de données
-                $db = new PDO('mysql:host=localhost;dbname=fcriviera', 'root', '');
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // $db = new PDO('mysql:host=sql7.freesqldatabase.com;dbname=sql7710600', 'sql7710600', 'pH8mCPUC9c');
+                // $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                include 'database.php';
 
                 // Préparation de la requête pour insérer l'utilisateur dans la base de données
                 $query = "INSERT INTO users (prenom, nom, email, birthdate, telephone, passwd) VALUES (:prenom, :nom, :email, :birthdate, :telephone, :passwd)";
