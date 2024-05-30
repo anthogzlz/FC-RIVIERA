@@ -6,13 +6,13 @@ if (session_status() == PHP_SESSION_NONE) {
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
     // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
-    header('Location: ./php/connexion.php');
+    header('Location: /php/connexion.php');
     exit();
 }
 
 
 // Inclure la connexion à la base de données
-include './php/database.php';
+include '/php/database.php';
 
 // Récupérer les matchs existants à domicile uniquement
 $stmt_matches = $db->prepare("SELECT id_match, match_name, places_dispo FROM calendrier WHERE home_team = ?");
