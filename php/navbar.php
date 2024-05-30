@@ -17,9 +17,9 @@
                     <a href="index.php"><img src="../assets/logo.png" alt="Logo FC Riviera"></a>
                 </div>
                 <ul class="menu left-menu">
-                    <li><a href="effectif.php">EFFECTIF</a></li>
-                    <li><a href="calendrier.php">CALENDRIER</a></li>
-                    <li><a href="classement.php">CLASSEMENT</a></li>
+                    <li><a href="./php/effectif.php">EFFECTIF</a></li>
+                    <li><a href="./php/calendrier.php">CALENDRIER</a></li>
+                    <li><a href="./php/classement.php">CLASSEMENT</a></li>
                 </ul>
                 <ul class="menu right-menu">
                     <li><a href="forum.php">FORUM</a></li>
