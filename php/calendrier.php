@@ -11,12 +11,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC Riviera - Calendrier</title>
-    <link rel="stylesheet" href="../CSS/calendrier.css">
+    <link rel="stylesheet" href="./CSS/calendrier.css">
 </head>
 
 <body>
     <header>
-        <?php include 'navbar.php'; ?>
+        <?php include './php/navbar.php'; ?>
     </header>
 
     <h2>Calendrier du FC Riviera</h2>
@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="calendrier">
         <?php
         // Connexion à la base de données
-        include 'database.php';
+        include './php/database.php';
 
         // Récupérer les matchs du FC Riviera (équipe numéro 3) dans l'ordre chronologique
         $equipe_nom = "FC Riviera";
@@ -60,7 +60,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
     <footer>
-        <?php include 'footer.php'; ?>
+        <?php include './php/footer.php'; ?>
     </footer>
 
 </body>

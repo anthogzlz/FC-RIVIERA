@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    header('Location: connexion.php');
+    header('Location: ./php/connexion.php');
     exit();
 }
 

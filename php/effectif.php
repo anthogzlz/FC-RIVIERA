@@ -10,28 +10,18 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC Riviera - Effectif</title>
-    <link rel="stylesheet" href="../css/effectif.css">
+    <link rel="stylesheet" href="./css/effectif.css">
 </head>
 <body>
     <header>
-        <?php include 'navbar.php'; ?>
+        <?php include './php/navbar.php'; ?>
     </header>
 
     <h2>Effectif du FC Riviera</h2>
     <div class="team">
         <?php
-        // Connexion à la base de données
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "fcriviera";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Vérification de la connexion
-        if ($conn->connect_error) {
-            die("Erreur de connexion à la base de données: " . $conn->connect_error);
-        }
+        // Inclure la connexion à la base de données
+        include './php/database.php';
 
         // Requête pour récupérer les joueurs de l'effectif
         $sql = "SELECT * FROM effectif";
@@ -57,7 +47,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
     <footer>
-        <?php include 'footer.php'; ?>
+        <?php include './php/footer.php'; ?>
     </footer>
 </body>
 </html>
