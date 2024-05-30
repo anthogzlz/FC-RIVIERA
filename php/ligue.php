@@ -9,10 +9,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Connexion à la base de données
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7710600";
-$password = "pH8mCPUC9c";
-$dbname = "sql7710600";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "fcriviera";
 
 // Création de la connexion
 $conn = new mysqli($servername, $username, $password, $dbname);

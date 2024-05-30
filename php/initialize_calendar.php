@@ -1,5 +1,5 @@
 <?php
-include './php/database.php';
+include 'database.php';
 
 // Exemple d'insertion de matchs dans la table calendrier avec des places disponibles
 $matches = [

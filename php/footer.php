@@ -1,5 +1,5 @@
 <footer id="footer">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section about">
@@ -25,7 +25,7 @@
                     </button>
                 </form>
                 <?php
-include './php/database.php';
+include 'database.php';
 
 // Vérifie si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

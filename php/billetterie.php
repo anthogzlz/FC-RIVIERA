@@ -6,13 +6,13 @@ if (session_status() == PHP_SESSION_NONE) {
 // Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
     // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
-    header('Location: /php/connexion.php');
+    header('Location: connexion.php');
     exit();
 }
 
 
 // Inclure la connexion à la base de données
-include '/php/database.php';
+include 'database.php';
 
 // Récupérer les matchs existants à domicile uniquement
 $stmt_matches = $db->prepare("SELECT id_match, match_name, places_dispo FROM calendrier WHERE home_team = ?");
@@ -70,10 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billetterie</title>
-    <link rel="stylesheet" href="./css/billetterie.css">
+    <link rel="stylesheet" href="../css/billetterie.css">
 </head>
 <body>
-    <?php include './php/navbar.php'; ?> <!-- Inclusion de la barre de navigation -->
+    <?php include 'navbar.php'; ?> <!-- Inclusion de la barre de navigation -->
     <h2>Billetterie</h2>
     <?php
     foreach ($matches as $match) {
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
     <footer>
-        <?php include './php/footer.php'; ?>
+        <?php include 'footer.php'; ?>
     </footer>
 </body>
 </html>

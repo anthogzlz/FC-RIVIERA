@@ -10,12 +10,11 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classement des équipes</title>
-    <link rel="stylesheet" href="./css/classement.css">
+    <link rel="stylesheet" href="../css/classement.css">
 </head>
 <body>
 
-<?php include './php/navbar.php'; ?>
-<?php include './php/database.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="classement-container">
     <div class="classement-content">
@@ -34,6 +33,19 @@ if (session_status() == PHP_SESSION_NONE) {
             </thead>
             <tbody>
                 <?php
+                // Connexion à la base de données
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "fcriviera";
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Vérification de la connexion
+                if ($conn->connect_error) {
+                    die("Erreur de connexion à la base de données: " . $conn->connect_error);
+                }
+
                 // Récupération des données des équipes classées
                 $sql = "SELECT * FROM equipe ORDER BY points DESC, differencebut DESC";
                 $result = $conn->query($sql);
@@ -68,7 +80,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $conn->close();
 ?>
     <footer>
-    <?php include './php/footer.php'; ?>
+    <?php include 'footer.php'; ?>
     </footer>
 
 </body>

@@ -4,7 +4,7 @@ session_start();
 // Vérifier si une session est déjà active
 if (isset($_SESSION['user_id'])) {
     // Redirection vers la page index.php si une session est active
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passwd = $_POST['passwd'];
         
         // Vérification des informations de connexion dans la base de données
-        require_once('./php/database.php');
+        require_once('database.php');
         
         try {
             // Connexion à la base de données
-            $db = new PDO('mysql:host=sql7.freesqldatabase.com;dbname=sql7710600', 'sql7710600', 'pH8mCPUC9c');
+            $db = new PDO('mysql:host=localhost;dbname=fcriviera', 'root', '');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Préparation de la requête pour récupérer l'utilisateur avec cet email
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ];
                 $_SESSION['user_id'] = $user['id_user']; // Ajoutez cette ligne pour la compatibilité avec ligue.php
                 $_SESSION['message'] = "Vous êtes connecté en tant que " . $user['email'];
-                header("Location: ../index.php");
+                header("Location: index.php");
                 exit();
             } else {
                 // Identifiants incorrects
@@ -59,10 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="./CSS/connexion.css">
+    <link rel="stylesheet" href="../CSS/connexion.css">
 </head>
 <body>
-    <?php include './php/navbar.php'; ?> <!-- Inclusion de la barre de navigation -->
+    <?php include 'navbar.php'; ?> <!-- Inclusion de la barre de navigation -->
     <h2>Connexion</h2>
     <?php if (!empty($message)) { ?>
         <p><?php echo $message; ?></p>
@@ -77,10 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Se connecter">
     </form>
 
-    <p>Pas encore inscrit ? <a href="./php/inscription.php">S'inscrire</a></p>
+    <p>Pas encore inscrit ? <a href="inscription.php">S'inscrire</a></p>
     
     <footer>
-    <?php include './php/footer.php'; ?>
+    <?php include 'footer.php'; ?>
     </footer>
 
 </body>

@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($passwd)) {
             $passwd = password_hash($passwd, PASSWORD_DEFAULT);// Hachage du mot de passe
-            require_once ('./php/database.php');
+            require_once ('database.php');
 
             try {
                 // Connexion à la base de données
-                $db = new PDO('mysql:host=sql7.freesqldatabase.com;dbname=sql7710600', 'sql7710600', 'pH8mCPUC9c');
+                $db = new PDO('mysql:host=localhost;dbname=fcriviera', 'root', '');
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Préparation de la requête pour insérer l'utilisateur dans la base de données

@@ -6,12 +6,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (!isset($_SESSION['user'])) {
     // Rediriger l'utilisateur s'il n'est pas connecté
-    header('Location: ./php/connexion.php');
+    header('Location: connexion.php');
     exit();
 }
 
 // Inclure la connexion à la base de données
-include './php/database.php';
+include 'database.php';
 
 // Récupérer les réservations de l'utilisateur
 $id_user = $_SESSION['user']['id_user'];
@@ -26,10 +26,10 @@ $reservations = $stmt_reservations->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Réservations</title>
-    <link rel="stylesheet" href="./css/reservations.css"> <!-- Ajoutez votre fichier CSS -->
+    <link rel="stylesheet" href="../css/reservations.css"> <!-- Ajoutez votre fichier CSS -->
 </head>
 <body>
-    <?php include './php/navbar.php'; ?> <!-- Inclure la barre de navigation -->
+    <?php include 'navbar.php'; ?> <!-- Inclure la barre de navigation -->
     <h2>Mes Réservations</h2>
 
     <div class="reservations">
@@ -58,7 +58,7 @@ $reservations = $stmt_reservations->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <footer>
-        <?php include './php/footer.php'; ?>
+        <?php include 'footer.php'; ?>
     </footer>
 </body>
 </html>

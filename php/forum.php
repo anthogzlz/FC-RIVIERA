@@ -19,12 +19,12 @@ $user_id = $_SESSION['user_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum FC Riviera</title>
-    <link rel="stylesheet" href="./css/forum.css">
+    <link rel="stylesheet" href="../css/forum.css">
 </head>
 <body>
 
-<?php include './php/navbar.php'; ?>
-<?php include './php/database.php'; ?>
+<?php include 'navbar.php'; ?>
+<?php include 'database.php'; ?>
 
 <div class="forum-container">
     <h1>Forum</h1>
