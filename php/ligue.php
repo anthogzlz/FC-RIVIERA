@@ -8,11 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Connexion à la base de données
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "fcriviera";
+    include 'database.php';
 
 // Création de la connexion
 $conn = new mysqli($servername, $username, $password, $dbname);

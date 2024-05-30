@@ -26,7 +26,7 @@ $reservations = $stmt_reservations->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Réservations</title>
-    <link rel="stylesheet" href="../css/reservations.css"> <!-- Ajoutez votre fichier CSS -->
+    <link rel="stylesheet" href="../css/reservations.css"> <!-- Ajoutez votre fichier css -->
 </head>
 <body>
     <?php include 'navbar.php'; ?> <!-- Inclure la barre de navigation -->
