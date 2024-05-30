@@ -14,14 +14,14 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
     <header>
-        <?php include '/php/navbar.php'; ?>
+        <?php include './php/navbar.php'; ?>
     </header>
 
     <h2>Effectif du FC Riviera</h2>
     <div class="team">
         <?php
         // Inclure la connexion à la base de données
-        include '/php/database.php';
+        include './php/database.php';
 
         // Requête pour récupérer les joueurs de l'effectif
         $sql = "SELECT * FROM effectif";
