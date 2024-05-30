@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (!isset($_SESSION['user_id'])) {
     // Si aucune session n'est active, redirigez vers la page de connexion
-    header("Location: ./php/connexion.php");
+    header("Location: connexion.php");
     exit;
 }
 
