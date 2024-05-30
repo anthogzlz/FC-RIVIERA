@@ -1,4 +1,5 @@
 <?php
+include 'database.php';
 session_start();
 
 // Vérifiez si une session est active
@@ -8,15 +9,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-    include 'database.php';
-
-// Création de la connexion
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("La connexion a échoué: " . $conn->connect_error);
-}
 ?>
 
 <!DOCTYPE html>
