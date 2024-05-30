@@ -34,10 +34,10 @@ if (session_status() == PHP_SESSION_NONE) {
             <tbody>
                 <?php
                 // Connexion à la base de données
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "fcriviera";
+                $servername = "sql7.freesqldatabase.com";
+                $username = "sql7710600";
+                $password = "pH8mCPUC9c";
+                $dbname = "sql7710600";
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
 

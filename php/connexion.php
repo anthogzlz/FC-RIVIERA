@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         try {
             // Connexion à la base de données
-            $db = new PDO('mysql:host=localhost;dbname=fcriviera', 'root', '');
+            $db = new PDO('mysql:host=sql7.freesqldatabase.com;dbname=sql7710600', 'sql7710600', 'pH8mCPUC9c');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Préparation de la requête pour récupérer l'utilisateur avec cet email

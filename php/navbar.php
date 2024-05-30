@@ -28,9 +28,9 @@
                     <?php
                     if (isset($_SESSION['user'])) {
                         echo '<li><a href="reservations.php">MES RÉSERVATIONS</a></li>';
-                        echo '<li><a href="../PHP/deconnexion.php">DECONNEXION</a></li>';
+                        echo '<li><a href="../php/deconnexion.php">DECONNEXION</a></li>';
                     } else {
-                        echo '<li><a href="../PHP/connexion.php">CONNEXION</a></li>';
+                        echo '<li><a href="../php/connexion.php">CONNEXION</a></li>';
                     }
                     ?>
                 </ul>
