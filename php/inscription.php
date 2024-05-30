@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$message = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérification que tous les champs du formulaire sont remplis
     if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['birthdate']) && isset($_POST['telephone']) && isset($_POST['passwd'])) {
