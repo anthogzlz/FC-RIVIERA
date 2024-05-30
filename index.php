@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <body>
     <header>
-        <?php include 'navbar.php'; ?>
+        <?php include '../php/navbar.php'; ?>
     </header>
 
     <div class="banner">
@@ -48,7 +48,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </script>
 
     <footer>
-    <?php include 'footer.php'; ?>
+    <?php include '../php/footer.php'; ?>
     </footer>
     
 </body>
