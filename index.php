@@ -10,12 +10,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC Riviera - Accueil</title>
-    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
 </head>
 
 <body>
     <header>
-        <?php include '/php/navbar.php'; ?>
+        <?php include './php/navbar.php'; ?>
     </header>
 
     <div class="banner">

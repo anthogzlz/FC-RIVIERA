@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC Riviera - Accueil</title>
-    <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="./CSS/navbar.css">
 </head>
 
 <body>
@@ -17,8 +17,8 @@
                     <a href="../index.php"><img src="/assets/logo.png" alt="Logo FC Riviera"></a>
                 </div>
                 <ul class="menu left-menu">
-                    <li><a href="/php/effectif.php">EFFECTIF</a></li>
-                    <li><a href="/php/calendrier.php">CALENDRIER</a></li>
+                    <li><a href="./php/effectif.php">EFFECTIF</a></li>
+                    <li><a href="./php/calendrier.php">CALENDRIER</a></li>
                     <li><a href="/php/classement.php">CLASSEMENT</a></li>
                 </ul>
                 <ul class="menu right-menu">
