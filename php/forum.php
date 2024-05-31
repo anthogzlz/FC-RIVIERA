@@ -1,15 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    // Si aucune session n'est active, redirigez vers la page de connexion
     header("Location: connexion.php");
     exit;
 }
 
-// Récupérer l'identifiant de l'utilisateur à partir de la session
 $user_id = $_SESSION['user_id'];
 ?>
 
@@ -64,48 +66,48 @@ $user_id = $_SESSION['user_id'];
     }
     ?>
 
-<div class="topics-list">
-    <?php
-    $sql = "SELECT t.*, u.prenom AS prenom FROM topics t JOIN users u ON t.user_id = u.id_user ORDER BY t.created_at DESC";
-    $stmt = $db->query($sql);
+    <div class="topics-list">
+        <?php
+        $sql = "SELECT t.*, u.prenom AS prenom FROM topics t JOIN users u ON t.user_id = u.id_user ORDER BY t.created_at DESC";
+        $stmt = $db->query($sql);
 
-    if ($stmt->rowCount() > 0) {
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<div class='topic'>";
-            echo "<h2>" . htmlspecialchars($row['title']) . "</h2>";
-            echo "<p>Créé par " . htmlspecialchars($row['prenom']) . " le " . $row['created_at'] . "</p>";
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='topic'>";
+                echo "<h2>" . htmlspecialchars($row['title']) . "</h2>";
+                echo "<p>Créé par " . htmlspecialchars($row['prenom']) . " le " . $row['created_at'] . "</p>";
 
-            echo "<form action='forum.php' method='POST'>";
-            echo "<input type='hidden' name='topic_id' value='" . $row['id'] . "'>";
-            echo "<textarea name='comment' placeholder='Votre commentaire' required></textarea>";
-            echo "<button type='submit' name='add_comment'>Ajouter un commentaire</button>";
-            echo "</form>";
+                echo "<form action='forum.php' method='POST'>";
+                echo "<input type='hidden' name='topic_id' value='" . $row['id'] . "'>";
+                echo "<textarea name='comment' placeholder='Votre commentaire' required></textarea>";
+                echo "<button type='submit' name='add_comment'>Ajouter un commentaire</button>";
+                echo "</form>";
 
-            $sql_comments = "SELECT c.*, u.prenom AS user_prenom FROM comments c JOIN users u ON c.user_id = u.id_user WHERE topic_id = :topic_id ORDER BY c.created_at DESC";
-            $stmt_comments = $db->prepare($sql_comments);
-            $stmt_comments->bindParam(':topic_id', $row['id']);
-            $stmt_comments->execute();
+                $sql_comments = "SELECT c.*, u.prenom AS user_prenom FROM comments c JOIN users u ON c.user_id = u.id_user WHERE topic_id = :topic_id ORDER BY c.created_at DESC";
+                $stmt_comments = $db->prepare($sql_comments);
+                $stmt_comments->bindParam(':topic_id', $row['id']);
+                $stmt_comments->execute();
 
-            if ($stmt_comments->rowCount() > 0) {
-                echo "<div class='comments'>";
-                while ($comment_row = $stmt_comments->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<div class='comment'>";
-                    echo "<p>" . htmlspecialchars($comment_row['comment']) . "</p>";
-                    echo "<small>Posté par " . htmlspecialchars($comment_row['user_prenom']) . " le " . $comment_row['created_at'] . "</small>";
+                if ($stmt_comments->rowCount() > 0) {
+                    echo "<div class='comments'>";
+                    while ($comment_row = $stmt_comments->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<div class='comment'>";
+                        echo "<p>" . htmlspecialchars($comment_row['comment']) . "</p>";
+                        echo "<small>Posté par " . htmlspecialchars($comment_row['user_prenom']) . " le " . $comment_row['created_at'] . "</small>";
+                        echo "</div>";
+                    }
                     echo "</div>";
+                } else {
+                    echo "<p>Aucun commentaire.</p>";
                 }
-                echo "</div>";
-            } else {
-                echo "<p>Aucun commentaire.</p>";
-            }
 
-            echo "</div>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>Aucun sujet trouvé.</p>";
         }
-    } else {
-        echo "<p>Aucun sujet trouvé.</p>";
-    }
-    ?>
-</div>
+        ?>
+    </div>
 </div>
 
 </body>
