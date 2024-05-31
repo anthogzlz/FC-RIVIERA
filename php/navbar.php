@@ -16,21 +16,20 @@
                 <div class="logo-container">
                     <a href="index.php"><img src="../assets/logo.png" alt="Logo FC Riviera"></a>
                 </div>
-                <ul class="menu left-menu">
+                <ul class="menu">
                     <li><a href="effectif.php">EFFECTIF</a></li>
                     <li><a href="calendrier.php">CALENDRIER</a></li>
                     <li><a href="classement.php">CLASSEMENT</a></li>
-                </ul>
-                <ul class="menu right-menu">
                     <li><a href="forum.php">FORUM</a></li>
                     <li><a href="ligue.php">LIGUE</a></li>
                     <li><a href="billetterie.php">BILLETTERIE</a></li>
+                </ul>
                     <?php
                     if (isset($_SESSION['user'])) {
-                        echo '<li><a href="reservations.php">MES RÉSERVATIONS</a></li>';
-                        echo '<li><a href="../php/deconnexion.php">DECONNEXION</a></li>';
+                        echo '<li class=menu><a href="reservations.php">MES RÉSERVATIONS</a></li>';
+                        echo '<li class=menu><a href="../php/deconnexion.php">DECONNEXION</a></li>';
                     } else {
-                        echo '<li><a href="../php/connexion.php">CONNEXION</a></li>';
+                        echo '<li class=menu><a href="../php/connexion.php">CONNEXION</a></li>';
                     }
                     ?>
                 </ul>
