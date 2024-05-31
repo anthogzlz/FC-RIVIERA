@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: connexion.php");
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +25,8 @@ if (!isset($_SESSION['user_id'])) {
     <?php include "navbar.php"; ?>
 
     <div class="sidebar">
-        <a href="?page=jeu"
-            class="tab <?php echo (isset($_GET['page']) && $_GET['page'] == 'jeu') ? 'active' : ''; ?>">Jeu</a>
-        <a href="?page=classement"
-            class="tab <?php echo (isset($_GET['page']) && $_GET['page'] == 'classement') ? 'active' : ''; ?>">Classement</a>
+        <a href="?page=jeu" class="tab <?php echo (isset($_GET['page']) && $_GET['page'] == 'jeu') ? 'active' : ''; ?>">Jeu</a>
+        <a href="?page=classement" class="tab <?php echo (isset($_GET['page']) && $_GET['page'] == 'classement') ? 'active' : ''; ?>">Classement</a>
     </div>
 
     <div class="content">
@@ -43,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
                 ELSE 0
             END +
             CASE WHEN p.mom_prono = c.manofthematch THEN 50 ELSE 0 END";
-        $conn->query($sql_update_scores);
+        $db->query($sql_update_scores);
 
         if (isset($_GET['page']) && $_GET['page'] == 'jeu') {
             // Récupérer le match avec l'ID 1 du calendrier
@@ -52,13 +49,13 @@ if (!isset($_SESSION['user_id'])) {
                     INNER JOIN equipe e1 ON c.home_team = e1.id_equipe
                     INNER JOIN equipe e2 ON c.away_team = e2.id_equipe
                     WHERE c.id_match = 1";
-            $result = $conn->query($sql);
+            $result = $db->query($sql);
 
             if ($result === FALSE) {
-                echo "Erreur dans la requête SQL : " . $conn->error;
+                echo "Erreur dans la requête SQL : " . $db->errorInfo()[2];
             } else {
-                if ($result->num_rows > 0) {
-                    $match = $result->fetch_assoc();
+                if ($result->rowCount() > 0) {
+                    $match = $result->fetch(PDO::FETCH_ASSOC);
                     ?>
                     <div class="game-container">
                         <h3>Jeu de Prédiction de Football</h3>
@@ -80,23 +77,21 @@ if (!isset($_SESSION['user_id'])) {
                                     <?php
                                     // Récupérer les joueurs de l'effectif du FC Riviera
                                     $sql_joueurs = "SELECT id_joueur, nom_joueur FROM effectif WHERE id_equipe = ?";
-                                    $stmt_joueurs = $conn->prepare($sql_joueurs);
+                                    $stmt_joueurs = $db->prepare($sql_joueurs);
                                     $equipe_fc_riviera_id = 3; // ID de l'équipe FC Riviera
-                                    $stmt_joueurs->bind_param("i", $equipe_fc_riviera_id);
-                                    $stmt_joueurs->execute();
-                                    $result_joueurs = $stmt_joueurs->get_result();
+                                    $stmt_joueurs->execute([$equipe_fc_riviera_id]);
+                                    $result_joueurs = $stmt_joueurs->fetchAll(PDO::FETCH_ASSOC);
 
                                     // Vérifier si des joueurs sont récupérés
-                                    if ($result_joueurs->num_rows > 0) {
+                                    if ($stmt_joueurs->rowCount() > 0) {
                                         // Afficher les options pour chaque joueur
-                                        while ($row_joueur = $result_joueurs->fetch_assoc()) {
+                                        foreach ($result_joueurs as $row_joueur) {
                                             // Afficher les noms des joueurs
                                             echo "<option value='{$row_joueur['id_joueur']}'>{$row_joueur['nom_joueur']}</option>";
                                         }
                                     } else {
                                         echo "<option value=''>Aucun joueur trouvé</option>";
                                     }
-                                    $stmt_joueurs->close();
                                     ?>
                                 </select>
 
@@ -116,12 +111,11 @@ if (!isset($_SESSION['user_id'])) {
         
                             // Vérifier si l'utilisateur a déjà pronostiqué sur ce match
                             $sql_check_prediction = "SELECT * FROM predictions WHERE user_id = ? AND match_number = ?";
-                            $stmt_check_prediction = $conn->prepare($sql_check_prediction);
-                            $stmt_check_prediction->bind_param("ii", $user_id, $match_id);
-                            $stmt_check_prediction->execute();
-                            $result_check_prediction = $stmt_check_prediction->get_result();
+                            $stmt_check_prediction = $db->prepare($sql_check_prediction);
+                            $stmt_check_prediction->execute([$user_id, $match_id]);
+                            $result_check_prediction = $stmt_check_prediction->fetchAll(PDO::FETCH_ASSOC);
 
-                            if ($result_check_prediction->num_rows > 0) {
+                            if (count($result_check_prediction) > 0) {
                                 echo "Vous avez déjà pronostiqué sur ce match.";
                             } else {
                                 // L'utilisateur n'a pas encore pronostiqué sur ce match, nous pouvons insérer le pronostic
@@ -131,44 +125,36 @@ if (!isset($_SESSION['user_id'])) {
         
                                 // Obtenez les scores réels du match
                                 $sql_get_real_scores = "SELECT home_team_goal, away_team_goal, manofthematch FROM calendrier WHERE id_match = ?";
-                                $stmt_get_real_scores = $conn->prepare($sql_get_real_scores);
-                                $stmt_get_real_scores->bind_param("i", $match_id);
-                                $stmt_get_real_scores->execute();
-                                $stmt_get_real_scores->bind_result($real_home_score, $real_away_score, $real_homme_match_id);
-                                $stmt_get_real_scores->fetch();
-                                $stmt_get_real_scores->close();
+                                $stmt_get_real_scores = $db->prepare($sql_get_real_scores);
+                                $stmt_get_real_scores->execute([$match_id]);
+                                $real_scores = $stmt_get_real_scores->fetch(PDO::FETCH_ASSOC);
 
                                 // Calculer les points
                                 $points = 0;
 
                                 // Vérifier si le pronostiqueur a correctement deviné le nombre de buts pour l'une ou les deux équipes
-                                if ($home_score_prono == $real_home_score) {
+                                if ($home_score_prono == $real_scores['home_team_goal']) {
                                     $points += 30;
                                 }
-                                if ($away_score_prono == $real_away_score) {
+                                if ($away_score_prono == $real_scores['away_team_goal']) {
                                     $points += 30;
                                 }
 
                                 // Vérifier si le pronostiqueur a correctement deviné l'homme du match
-                                if ($homme_match_prono == $real_homme_match_id) {
+                                if ($homme_match_prono == $real_scores['manofthematch']) {
                                     $points += 50;
                                 }
 
                                 // Insérer le pronostic dans la base de données
                                 $sql_insert_prediction = "INSERT INTO predictions (user_id, match_number, home_score, away_score, mom_prono, points) VALUES (?, ?, ?, ?, ?, ?)";
-                                $stmt_insert_prediction = $conn->prepare($sql_insert_prediction);
-                                $stmt_insert_prediction->bind_param("iiissi", $user_id, $match_id, $home_score_prono, $away_score_prono, $homme_match_prono, $points);
+                                $stmt_insert_prediction = $db->prepare($sql_insert_prediction);
 
-                                if ($stmt_insert_prediction->execute()) {
+                                if ($stmt_insert_prediction->execute([$user_id, $match_id, $home_score_prono, $away_score_prono, $homme_match_prono, $points])) {
                                     echo "Pronostic enregistré avec succès!";
                                 } else {
-                                    echo "Erreur: " . $sql_insert_prediction . "<br>" . $conn->error;
+                                    echo "Erreur: " . $sql_insert_prediction . "<br>" . $db->errorInfo()[2];
                                 }
-
-                                $stmt_insert_prediction->close();
                             }
-
-                            $stmt_check_prediction->close();
                         } else {
                             echo "Veuillez sélectionner l'homme du match.";
                         }
@@ -196,12 +182,12 @@ if (!isset($_SESSION['user_id'])) {
                         INNER JOIN users u ON p.user_id = u.id_user 
                         GROUP BY p.user_id, u.prenom, u.nom
                         ORDER BY total_points DESC";
-                        $result = $conn->query($sql);
+                        $result = $db->query($sql);
 
-                        if ($result->num_rows > 0) {
+                        if ($result->rowCount() > 0) {
                             $rang = 1;
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr><td>{$rang}</td><td>{$row['prenom']}</td><td>{$row['total_points']}</td></tr>";
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<tr><td>{$rang}</td><td>{$row['prenom']} {$row['nom']}</td><td>{$row['total_points']}</td></tr>";
                                 $rang++;
                             }
                         } else {
@@ -221,7 +207,7 @@ if (!isset($_SESSION['user_id'])) {
         ?>
     </div>
 
-    <?php $conn->close(); ?>
+    <?php $db = null; ?>
 
 </body>
 
