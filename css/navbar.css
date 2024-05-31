@@ -23,22 +23,22 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    position: relative;
 }
 
 /* Styles pour le conteneur du menu */
 .menu-container {
     display: flex;
     align-items: center;
+    justify-content: center; /* Changer space-between à center */
     width: 100%;
-    justify-content: space-between;
     position: relative;
 }
 
 /* Styles pour le conteneur du logo */
 .logo-container {
     text-align: center;
-    flex: 1;
+    margin-right: auto; /* Ajouter */
+    margin-left: auto; /* Ajouter */
 }
 
 /* Styles pour l'image du logo */
@@ -51,18 +51,12 @@ nav img {
 .menu {
     display: flex;
     list-style: none;
+    text-decoration: none;
 }
-
-.menu.left-menu {
-    margin-right: auto;
-}
-
-.menu.right-menu {
-    margin-left: auto;
-}
-
+/* Styles pour les éléments du menu */
 .menu li {
     padding: 10px;
+    text-decoration: none;
 }
 
 .menu li a {
@@ -70,6 +64,14 @@ nav img {
     text-decoration: none;
     position: relative;
     display: block;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 1px;
 }
 
 .menu li a::before,
@@ -97,6 +99,7 @@ nav img {
 .menu li a:hover::after {
     transform: scaleX(1);
 }
+
 
 /* Styles pour le menu burger */
 .menu-toggle {
@@ -132,8 +135,7 @@ nav img {
         width: 100%;
     }
 
-    .menu-container.active .menu.left-menu, 
-    .menu-container.active .menu.right-menu {
+    .menu-container.active .menu{
         display: flex;
     }
 
@@ -147,6 +149,7 @@ nav img {
     }
 
     .logo-container {
+        text-align: center; /* Centrer le logo horizontalement */
         order: -1; /* S'assurer que le logo est en haut */
         margin: 10px 0;
     }
